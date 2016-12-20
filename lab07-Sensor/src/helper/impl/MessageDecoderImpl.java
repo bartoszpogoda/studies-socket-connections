@@ -1,6 +1,5 @@
 package helper.impl;
 
-import dom.DecodedMessage;
 import helper.MessageDecoder;
 
 public class MessageDecoderImpl implements MessageDecoder {

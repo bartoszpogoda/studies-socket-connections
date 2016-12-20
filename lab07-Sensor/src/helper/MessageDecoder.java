@@ -1,6 +1,6 @@
 package helper;
 
-import dom.DecodedMessage;
+import helper.impl.DecodedMessage;
 
 public interface MessageDecoder {
 	DecodedMessage decode(String message);
