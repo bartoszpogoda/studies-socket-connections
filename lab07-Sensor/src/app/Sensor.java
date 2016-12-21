@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 
 public class Sensor {
-
+	// TODO mozna by zrobic klase implementujaca Sensed ktora pobiera jakies realne dane ze strony
 	public static void main(String[] args) {
 		
 		int port;

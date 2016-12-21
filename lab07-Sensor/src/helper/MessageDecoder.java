@@ -1,7 +1,12 @@
 package helper;
 
+import exception.MessageNotCorrectException;
 import helper.impl.DecodedMessage;
 
 public interface MessageDecoder {
-	DecodedMessage decode(String message);
+	/**
+	 * @param message
+	 *            accepted Strings "S:{interval},{host},{port}\n" "P:\n" and "K:\n"
+	 */
+	DecodedMessage decode(String message) throws MessageNotCorrectException;
 }
