@@ -1,5 +1,6 @@
 package model.impl;
 
+import exception.ParametersNotSetCorrectlyException;
 import helper.Action;
 import model.Engine;
 import model.Sensed;
@@ -7,8 +8,8 @@ import model.Sensed;
 public class EngineImpl implements Engine {
 
 	private int interval;
-	private String host;
-	private int port;
+	private String host = null;
+	private int port = -1;
 	
 	private Sensed sensedObject;
 	private SensorThread sensorThread;
@@ -29,20 +30,29 @@ public class EngineImpl implements Engine {
 	}
 
 	@Override
-	public void start() {
-		// TODO Auto-generated method stub
+	public void start() throws ParametersNotSetCorrectlyException {
+		
+		if(interval <= 0) throw new ParametersNotSetCorrectlyException();
+		if(host == null || host.isEmpty()) throw new ParametersNotSetCorrectlyException();
+		if(port < 0 || port > 65535 ) throw new ParametersNotSetCorrectlyException();
+
+		sensorThread = new SensorThread(interval, host, port);
+		
+		System.out.println("Starting sensor thread...");
+		sensorThread.start();
 
 	}
 
 	@Override
 	public void stop() {
-		// TODO Auto-generated method stub
+		System.out.println("Killing sensor thread...");
+		sensorThread.kill();
 
 	}
 
 	@Override
-	public void setSensedObject(Sensed examinedObject) {
-		// TODO Auto-generated method stub
+	public void setSensedObject(Sensed sensedObject) {
+		this.sensedObject = sensedObject;
 		
 	}
 

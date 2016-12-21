@@ -1,5 +1,6 @@
 package model;
 
+import exception.ParametersNotSetCorrectlyException;
 import helper.Action;
 
 public interface Engine {
@@ -7,7 +8,7 @@ public interface Engine {
 	void setHost(String host);
 	void setPort(int port);
 	
-	void start();
+	void start() throws ParametersNotSetCorrectlyException;
 	void stop();
 	
 	void setSensedObject(Sensed sensedObject);
