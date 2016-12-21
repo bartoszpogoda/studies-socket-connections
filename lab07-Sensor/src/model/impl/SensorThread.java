@@ -30,6 +30,10 @@ public class SensorThread extends Thread {
 		this.sensedObject = sensedObject;
 	}
 	
+	public void kill(){
+		alive = false;
+	}
+	
 	@Override
 	public void run() {
 		
