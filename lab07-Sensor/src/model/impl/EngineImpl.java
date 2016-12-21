@@ -38,6 +38,8 @@ public class EngineImpl implements Engine {
 
 		sensorThread = new SensorThread(interval, host, port);
 		
+		sensorThread.setSensedObject(sensedObject);
+		
 		System.out.println("Starting sensor thread...");
 		sensorThread.start();
 
