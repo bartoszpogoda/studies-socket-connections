@@ -6,7 +6,7 @@ import helper.impl.DecodedMessage;
 public interface MessageDecoder {
 	/**
 	 * @param message
-	 *            accepted Strings "S:{interval},{host},{port}\n" "P:\n" and "K:\n"
+	 *            accepted Strings "S:{interval},{host},{port}" "P:" and "K:"
 	 */
 	DecodedMessage decode(String message) throws MessageNotCorrectException;
 }

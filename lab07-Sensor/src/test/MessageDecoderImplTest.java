@@ -18,7 +18,7 @@ public class MessageDecoderImplTest {
 		DecodedMessage decodedMessage = null;
 		
 		try {
-			decodedMessage = messageDecoder.decode("S:1232,localhost,2001\n");
+			decodedMessage = messageDecoder.decode("S:1232,localhost,2001");
 		} catch (MessageNotCorrectException e) {
 			fail();
 		}
@@ -34,7 +34,7 @@ public class MessageDecoderImplTest {
 		DecodedMessage decodedMessage = null;
 		
 		try {
-			decodedMessage = messageDecoder.decode("P:\n");
+			decodedMessage = messageDecoder.decode("P:");
 		} catch (MessageNotCorrectException e) {
 			fail();
 		}
@@ -48,7 +48,7 @@ public class MessageDecoderImplTest {
 		DecodedMessage decodedMessage = null;
 		
 		try {
-			decodedMessage = messageDecoder.decode("K:\n");
+			decodedMessage = messageDecoder.decode("K:");
 		} catch (MessageNotCorrectException e) {
 			fail();
 		}
