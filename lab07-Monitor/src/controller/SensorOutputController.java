@@ -9,4 +9,5 @@ public interface SensorOutputController {
 	void setPort(int port);
 	
 	void start();
+	void stop();
 }

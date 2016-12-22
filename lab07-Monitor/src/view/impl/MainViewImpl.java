@@ -7,15 +7,21 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import controller.MainViewController;
+import controller.SensorOutputController;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import java.awt.Font;
 
 public class MainViewImpl extends JFrame implements MainView {
 	private JTextField tfHost;
@@ -23,10 +29,15 @@ public class MainViewImpl extends JFrame implements MainView {
 	private JTextField tfMessage;
 	
 	private JButton btnSendMessage;
+	private JTextArea textMonitor;
+	private JPanel panelBlink;
+	
+	private boolean blinkThreadActive = false;
 
 	public MainViewImpl() {
 		getContentPane().setLayout(null);
-
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
 		JPanel panelControl = new JPanel();
 		panelControl
 				.setBorder(new TitledBorder(null, "Sterowanie", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -41,7 +52,7 @@ public class MainViewImpl extends JFrame implements MainView {
 		panelConnection.setLayout(null);
 
 		JLabel lblHost = new JLabel("host");
-		lblHost.setBounds(12, 29, 24, 16);
+		lblHost.setBounds(12, 29, 36, 16);
 		panelConnection.add(lblHost);
 
 		tfHost = new JTextField();
@@ -74,29 +85,48 @@ public class MainViewImpl extends JFrame implements MainView {
 		getContentPane().add(panelMonitor);
 		panelMonitor.setLayout(null);
 
-		JTextArea textMonitor = new JTextArea();
+		textMonitor = new JTextArea();
+		textMonitor.setFont(new Font("Monospaced", Font.BOLD, 24));
 		textMonitor.setForeground(new Color(255, 255, 255));
 		textMonitor.setBackground(new Color(0, 0, 255));
-		textMonitor.setBounds(12, 13, 254, 363);
+		textMonitor.setBounds(12, 13, 254, 333);
 		panelMonitor.add(textMonitor);
+		
+		panelBlink = new JPanel();
+		panelBlink.setBounds(12, 359, 22, 20);
+		panelBlink.setBackground(Color.WHITE);
+		panelMonitor.add(panelBlink);
+		
+		setSize(633,473);
 	}
 
+	
 	@Override
-	public String getHostPort() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public void setOutput(String[] data) {
+		textMonitor.setText("");
+		
+		for(String strData : data){
+			textMonitor.append(strData + "\n");
+		}
 
-	@Override
-	public String getMessage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setOutput(double[] data) {
-		// TODO Auto-generated method stub
-
+		panelBlink.setBackground(Color.GREEN);
+		
+		if(!blinkThreadActive){
+			Thread blinkThread = new Thread(){
+				@Override
+				public void run() {
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+					}
+					panelBlink.setBackground(Color.WHITE);
+					blinkThreadActive = false;
+				}
+			};
+			blinkThread.start();
+		}
+	
+	
 	}
 
 	@Override
@@ -111,10 +141,39 @@ public class MainViewImpl extends JFrame implements MainView {
 		});
 		
 	}
+	
+	@Override
+	public void setSensorOutputController(SensorOutputController sensorOutputController) {
+		//terminate threads on window close
+				this.addWindowListener(new WindowListener(){
+					@Override
+					public void windowActivated(WindowEvent arg0) {}
+					
+					@Override
+					public void windowClosed(WindowEvent arg0) { 
+						sensorOutputController.stop();
+					}
+					
+					@Override
+					public void windowClosing(WindowEvent arg0) {}
+
+					@Override
+					public void windowDeactivated(WindowEvent arg0) {}
+
+					@Override
+					public void windowDeiconified(WindowEvent arg0) {}
+
+					@Override
+					public void windowIconified(WindowEvent arg0) {	}
+
+					@Override
+					public void windowOpened(WindowEvent arg0) { }
+					
+				});
+	}
 
 	@Override
 	public void reportError(String message) {
-		// TODO Auto-generated method stub
-		
+		JOptionPane.showMessageDialog(this, message, "B³¹d", JOptionPane.ERROR_MESSAGE);
 	}
 }

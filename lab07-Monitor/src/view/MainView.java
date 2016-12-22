@@ -1,14 +1,15 @@
 package view;
 
 import controller.MainViewController;
+import controller.SensorOutputController;
 
 public interface MainView {
 	void setMainViewController(MainViewController mainViewController);
-	String getHostPort();
-	String getMessage();
+	void setSensorOutputController(SensorOutputController sensorOutputController);
+	
 	
 	void reportError(String message);
 	
-	void setOutput(double[] data);
+	void setOutput(String[] data);
 	void setVisible(boolean b);
 }
