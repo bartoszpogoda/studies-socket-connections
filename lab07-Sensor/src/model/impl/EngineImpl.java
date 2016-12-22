@@ -36,6 +36,11 @@ public class EngineImpl implements Engine {
 		if(host == null || host.isEmpty()) throw new ParametersNotSetCorrectlyException();
 		if(port < 0 || port > 65535 ) throw new ParametersNotSetCorrectlyException();
 
+		//kills any possible running thread
+		if(sensorThread != null){
+			sensorThread.kill();
+		}
+		
 		sensorThread = new SensorThread(interval, host, port);
 		
 		sensorThread.setSensedObject(sensedObject);
