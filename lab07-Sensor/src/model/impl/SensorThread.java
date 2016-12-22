@@ -56,7 +56,8 @@ public class SensorThread extends Thread {
 				socket.close();
 				
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println("B³¹d po³¹czenia");
+				return;
 			}
 			
 			try {

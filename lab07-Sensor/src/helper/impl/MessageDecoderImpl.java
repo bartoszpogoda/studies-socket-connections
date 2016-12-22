@@ -46,6 +46,7 @@ public class MessageDecoderImpl implements MessageDecoder {
 			} 
 		}
 		
+		if(decodedMessage == null) throw new MessageNotCorrectException();
 		
 		return decodedMessage;
 	}
