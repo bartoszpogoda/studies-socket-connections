@@ -12,4 +12,5 @@ public interface MainView {
 	
 	void setOutput(String[] data);
 	void setVisible(boolean b);
+	void setPort(int port);
 }

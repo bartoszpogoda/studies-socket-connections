@@ -32,6 +32,8 @@ public class MainViewImpl extends JFrame implements MainView {
 	private JTextArea textMonitor;
 	private JPanel panelBlink;
 	
+	private JLabel lblMonitorPort;
+	
 	private boolean blinkThreadActive = false;
 
 	public MainViewImpl() {
@@ -41,7 +43,7 @@ public class MainViewImpl extends JFrame implements MainView {
 		JPanel panelControl = new JPanel();
 		panelControl
 				.setBorder(new TitledBorder(null, "Sterowanie", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelControl.setBounds(12, 13, 300, 204);
+		panelControl.setBounds(12, 208, 300, 204);
 		getContentPane().add(panelControl);
 		panelControl.setLayout(null);
 
@@ -96,6 +98,14 @@ public class MainViewImpl extends JFrame implements MainView {
 		panelBlink.setBounds(12, 359, 22, 20);
 		panelBlink.setBackground(Color.WHITE);
 		panelMonitor.add(panelBlink);
+		
+		JLabel lblPortNaKtrym = new JLabel("Port:");
+		lblPortNaKtrym.setBounds(22, 23, 46, 28);
+		getContentPane().add(lblPortNaKtrym);
+		
+		lblMonitorPort = new JLabel("MONITOR_PORT");
+		lblMonitorPort.setBounds(80, 29, 95, 16);
+		getContentPane().add(lblMonitorPort);
 		
 		setSize(633,473);
 	}
@@ -175,5 +185,11 @@ public class MainViewImpl extends JFrame implements MainView {
 	@Override
 	public void reportError(String message) {
 		JOptionPane.showMessageDialog(this, message, "B³¹d", JOptionPane.ERROR_MESSAGE);
+	}
+
+
+	@Override
+	public void setPort(int port) {
+		lblMonitorPort.setText(Integer.toString(port));
 	}
 }

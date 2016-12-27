@@ -39,6 +39,7 @@ public class Monitor {
 		
 		mainView.setSensorOutputController(sensorOutputController);
 		
+		mainView.setPort(port);
 		mainView.setVisible(true);
 		
 		sensorOutputController.start();
