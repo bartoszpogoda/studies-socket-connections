@@ -12,16 +12,15 @@ import view.MainView;
 import view.impl.MainViewImpl;
 
 public class Monitor {
-
+	//TODO: czy sensor te¿ po wy³aczeniu wy³acza serwer socket?
 	public static void main(String[] args) {
 		
 		int port;
 		
 		try{
 			port = Integer.parseInt(args[0]);
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-			return;
+		} catch (Exception e) {
+			port = 1234;
 		}
 		
 		DataRepository dataRepository = new DataRepositoryImpl(5);
