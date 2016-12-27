@@ -17,7 +17,8 @@ import helper.impl.MessageDecoderImpl;
 import model.Engine;
 import model.Sensed;
 import model.impl.EngineImpl;
-import model.impl.SensedRandom;
+import model.impl.SensedAvaliableMemory;
+import model.impl.SensedAvaliableSpace;
 
 public class Sensor {
 	// TODO mozna by zrobic klase implementujaca Sensed ktora pobiera jakies realne dane ze strony
@@ -31,7 +32,7 @@ public class Sensor {
 		int port;
 		ServerSocket serverSocket;
 		
-		Sensed sensed = new SensedRandom();
+		Sensed sensed = new SensedAvaliableSpace();
 		
 		Engine engine = new EngineImpl();
 		engine.setSensedObject(sensed);
