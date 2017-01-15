@@ -59,7 +59,6 @@ public class SensorListenerImpl implements SensorListener {
 				mainView.setOutput(dataRepository.getValues());
 				
 			} catch (IOException e) {
-				// zatrzymanie dzialania gniazdka serwerowego
 				return;
 			}
 		}

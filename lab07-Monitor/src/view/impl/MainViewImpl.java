@@ -180,7 +180,7 @@ public class MainViewImpl extends JFrame implements MainView {
 	}
 	
 	@Override
-	public void setSensorOutputController(SensorListener sensorOutputController) {
+	public void setSensorListener(SensorListener sensorOutputController) {
 		//terminate threads on window close
 				this.addWindowListener(new WindowListener(){
 					@Override

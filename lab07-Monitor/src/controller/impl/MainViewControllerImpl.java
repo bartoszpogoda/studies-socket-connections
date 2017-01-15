@@ -48,7 +48,6 @@ public class MainViewControllerImpl implements MainViewController{
 			printWriter.flush();
 		} catch (IOException e) {
 			mainView.reportError(e.getMessage());
-			return;
 		}
 		
 		try {

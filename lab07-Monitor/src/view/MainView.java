@@ -5,7 +5,7 @@ import controller.SensorListener;
 
 public interface MainView {
 	void setMainViewController(MainViewController mainViewController);
-	void setSensorOutputController(SensorListener sensorOutputController);
+	void setSensorListener(SensorListener sensorOutputController);
 	
 	
 	void reportError(String message);

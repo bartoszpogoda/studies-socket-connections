@@ -1,7 +1,5 @@
 package app;
 
-import javax.net.ssl.SNIHostName;
-
 import controller.MainViewController;
 import controller.SensorListener;
 import controller.impl.MainViewControllerImpl;
@@ -12,8 +10,12 @@ import view.MainView;
 import view.impl.MainViewImpl;
 
 public class Monitor {
-	//TODO: czy sensor te¿ po wy³aczeniu wy³acza serwer socket?
 	public static void main(String[] args) {
+		
+		if(args.length != 1){
+			System.out.println("Wymagane argumenty: {port Monitora} ");
+			return;
+		}
 		
 		int port;
 		
@@ -32,17 +34,17 @@ public class Monitor {
 		mainViewController.setMainView(mainView);
 		mainView.setMainViewController(mainViewController);
 		
-		SensorListener sensorOutputController = new SensorListenerImpl();
-		sensorOutputController.setPort(port);
-		sensorOutputController.setDataRepository(dataRepository);
-		sensorOutputController.setMainView(mainView);
+		SensorListener sensorListener = new SensorListenerImpl();
+		sensorListener.setPort(port);
+		sensorListener.setDataRepository(dataRepository);
+		sensorListener.setMainView(mainView);
 		
-		mainView.setSensorOutputController(sensorOutputController);
+		mainView.setSensorListener(sensorListener);
 		
 		mainView.setPort(port);
 		mainView.setVisible(true);
 		
-		sensorOutputController.start();
+		sensorListener.start();
 		
 	}
 
