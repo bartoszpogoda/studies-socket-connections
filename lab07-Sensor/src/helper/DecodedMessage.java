@@ -1,6 +1,4 @@
-package helper.impl;
-
-import helper.Action;
+package helper;
 
 public class DecodedMessage {
 	private Action action;

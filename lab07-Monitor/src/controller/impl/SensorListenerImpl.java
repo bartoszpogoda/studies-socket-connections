@@ -5,11 +5,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-import controller.SensorOutputController;
+import controller.SensorListener;
 import model.DataRepository;
 import view.MainView;
 
-public class SensorOutputControllerImpl implements SensorOutputController {
+public class SensorListenerImpl implements SensorListener {
 
 	private DataRepository dataRepository;
 	private MainView mainView;
@@ -70,8 +70,8 @@ public class SensorOutputControllerImpl implements SensorOutputController {
 	public void stop() {
 		try {
 			serverSocket.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			
 		}
 	}
 

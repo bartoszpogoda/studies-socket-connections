@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import exception.MessageNotCorrectException;
 import helper.Action;
+import helper.DecodedMessage;
 import helper.MessageDecoder;
-import helper.impl.DecodedMessage;
 import helper.impl.MessageDecoderImpl;
 
 public class MessageDecoderImplTest {

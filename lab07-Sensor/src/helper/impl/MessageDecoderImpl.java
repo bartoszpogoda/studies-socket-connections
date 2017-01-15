@@ -2,6 +2,7 @@ package helper.impl;
 
 import exception.MessageNotCorrectException;
 import helper.Action;
+import helper.DecodedMessage;
 import helper.MessageDecoder;
 
 public class MessageDecoderImpl implements MessageDecoder {

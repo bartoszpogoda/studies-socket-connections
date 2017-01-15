@@ -1,11 +1,11 @@
 package view;
 
 import controller.MainViewController;
-import controller.SensorOutputController;
+import controller.SensorListener;
 
 public interface MainView {
 	void setMainViewController(MainViewController mainViewController);
-	void setSensorOutputController(SensorOutputController sensorOutputController);
+	void setSensorOutputController(SensorListener sensorOutputController);
 	
 	
 	void reportError(String message);

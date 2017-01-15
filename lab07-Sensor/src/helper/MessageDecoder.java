@@ -1,7 +1,6 @@
 package helper;
 
 import exception.MessageNotCorrectException;
-import helper.impl.DecodedMessage;
 
 public interface MessageDecoder {
 	/**

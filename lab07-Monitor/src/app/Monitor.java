@@ -3,9 +3,9 @@ package app;
 import javax.net.ssl.SNIHostName;
 
 import controller.MainViewController;
-import controller.SensorOutputController;
+import controller.SensorListener;
 import controller.impl.MainViewControllerImpl;
-import controller.impl.SensorOutputControllerImpl;
+import controller.impl.SensorListenerImpl;
 import model.DataRepository;
 import model.impl.DataRepositoryImpl;
 import view.MainView;
@@ -32,7 +32,7 @@ public class Monitor {
 		mainViewController.setMainView(mainView);
 		mainView.setMainViewController(mainViewController);
 		
-		SensorOutputController sensorOutputController = new SensorOutputControllerImpl();
+		SensorListener sensorOutputController = new SensorListenerImpl();
 		sensorOutputController.setPort(port);
 		sensorOutputController.setDataRepository(dataRepository);
 		sensorOutputController.setMainView(mainView);
