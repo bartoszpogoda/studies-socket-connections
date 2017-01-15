@@ -1,9 +1,6 @@
 package app;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
@@ -19,20 +16,28 @@ import model.Sensed;
 import model.impl.EngineImpl;
 import model.impl.SensedAvaliableMemory;
 import model.impl.SensedAvaliableSpace;
+import model.impl.SensedRandom;
 
 public class Sensor {
-	// TODO mozna by zrobic klase implementujaca Sensed ktora pobiera jakies realne dane ze strony
 	public static void main(String[] args) {
 		
-		if(args.length != 1){
-			System.out.println("Wymagane argumenty: {port Sensora} ");
+		if(args.length != 2){
+			System.out.println("Wymagane argumenty: {port Sensora} {\"storage\",\"memory\",\"random\",}");
 			return;
 		}
 		
 		int port;
 		ServerSocket serverSocket;
 		
-		Sensed sensed = new SensedAvaliableSpace();
+		Sensed sensed = null;
+		
+		if(args[1].equalsIgnoreCase("storage")){
+			sensed = new SensedAvaliableSpace();
+		} else if(args[1].equalsIgnoreCase("memory")){
+			sensed = new SensedAvaliableMemory();
+		} else{
+			sensed = new SensedRandom();
+		}
 		
 		Engine engine = new EngineImpl();
 		engine.setSensedObject(sensed);
